@@ -1,3 +1,5 @@
 Our project proposal is SignText.
 
 My name is Steni Stephan. I am a Senior at Hunter College and I enjoy front end development.
+
+My name is Kelvin Basdeo. I am a senior at Hunter College and I want to get my masters in Data science.
