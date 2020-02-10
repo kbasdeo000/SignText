@@ -1,0 +1,3 @@
+Our project proposal is SignText.
+
+My name is Steni Stephan. I am a Senior at Hunter College and I enjoy front end development.
