@@ -1,0 +1,38 @@
+SignText Resources
+
+Sign Language Hackathon Project:
+https://github.com/harshbg/Sign-Language-Interpreter-using-Deep-Learning
+
+TensorFlow
+Open-source machine learning platform
+Simple demonstration of using TensorFlow to classify articles of clothing: https://www.tensorflow.org/tutorials/keras/classification/
+Textbook: https://www.lpsm.paris/pageperso/has/source/Hand-on-ML.pdf
+Chapter 9/ pg 229
+https://adventuresinmachinelearning.com/python-tensorflow-tutorial/
+Program to recognize numbers: https://www.digitalocean.com/community/tutorials/how-to-build-a-neural-network-to-recognize-handwritten-digits-with-tensorflow
+
+Neural Networks: 
+A set of algorithms modeled loosely after the human brain, designed to recognize patterns. Training examples are used to develop a system that can train and learn from those examples. 
+Ultimately, they are making predictions
+The larger the training sample → the more accurate the predictions.
+For example: recognizing the written numbers 1-10: http://neuralnetworksanddeeplearning.com/chap1.html
+
+Keras?
+https://victorzhou.com/blog/keras-neural-network-tutorial/
+
+OpenCV for webcam capture (Needs to be installed externally)
+https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_gui/py_video_display/py_video_display.html
+Finger Detection and Hand Differentiation (from background):
+https://dev.to/amarlearning/finger-detection-and-tracking-using-opencv-and-python-586m
+Background Subtraction (by Izane):
+https://github.com/lzane/Fingers-Detection-using-OpenCV-and-Python
+https://becominghuman.ai/real-time-finger-detection-1e18fea0d1d4
+Background Subtraction in OpenCV:
+https://docs.opencv.org/3.4/d1/dc5/tutorial_background_subtraction.html
+
+
+Telling Dogs and Cats Apart:
+https://www.tensorflow.org/tutorials/images/classification
+
+Dataset:
+https://www.kaggle.com/grassknoted/asl-alphabet/data
