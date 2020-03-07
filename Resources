@@ -36,3 +36,6 @@ https://www.tensorflow.org/tutorials/images/classification
 
 Dataset:
 https://www.kaggle.com/grassknoted/asl-alphabet/data
+
+How to Load, Convert, & Save Images via the Keras API:
+https://machinelearningmastery.com/how-to-load-convert-and-save-images-with-the-keras-api/
