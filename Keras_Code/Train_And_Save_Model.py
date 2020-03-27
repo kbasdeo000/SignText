@@ -8,7 +8,7 @@
 
 # ### Import Libraries
 
-get_ipython().run_line_magic('matplotlib', 'notebook')
+# get_ipython().run_line_magic('matplotlib', 'notebook')
 
 # Imports for Deep Learning
 from keras.layers import Conv2D, Dense, Dropout, Flatten
@@ -42,19 +42,22 @@ import numpy as np
 from os import getenv
 import time
 import itertools
+import os
 
 # Image Preprocessing
 from skimage.filters import sobel, scharr
 
 
 # ### Set Up Global Variables
-#
 # The following variables will be used throughout.
-# The `MODEL_` variables are helpful for iterating over the notebook without re-fitting the model all the time, but aren't useful in Kaggle.
+# The `MODEL_` variables are helpful for iterating over the notebook without re-fitting the model all the time,
+# but aren't useful in Kaggle.
 # Set global variables
-TRAIN_DIR = '/home/kchonka/Documents/SignText/data_split/train'
-TEST_DIR = '/home/kchonka/Documents/SignText/data_split/val'
-CUSTOM_TEST_DIR = '../input/asl-alphabet-test/asl-alphabet-test'
+
+os.chdir("..") # Go back to the project (parent) directory of the Keras_Code directory
+TRAIN_DIR = os.getcwd() + '/asl-alphabet/asl_alphabet_train/asl_alphabet_train'
+TEST_DIR = os.getcwd() + '/asl-alphabet/asl_alphabet_test/asl_alphabet_test'
+CUSTOM_TEST_DIR = os.getcwd() + '../asl-alphabet-test'
 CLASSES = [folder[len(TRAIN_DIR) + 1:] for folder in glob(TRAIN_DIR + '/*')]
 CLASSES.sort()
 
@@ -65,7 +68,7 @@ VALIDATION_SPLIT = 0.1
 BATCH_SIZE = 64
 
 # Model saving for easier local iterations
-MODEL_DIR = '/home/kchonka/Documents/SignText'
+MODEL_DIR = os.getcwd()
 MODEL_PATH = MODEL_DIR + '/cnn-model.h5'
 MODEL_WEIGHTS_PATH = MODEL_DIR + '/cnn-model.weights.h5'
 MODEL_SAVE_TO_DISK = getenv('KAGGLE_WORKING_DIR') != '/kaggle/working'
