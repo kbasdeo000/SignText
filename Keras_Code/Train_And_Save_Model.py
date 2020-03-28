@@ -1,14 +1,12 @@
-# ********************************************************************
+# ********************************************************************************************************
 # Title: Classifying Images of the ASL Alphabet using Keras
 # Author: Dan Rasband
 # Date: August 16, 2018
 # Code Version: 17
 # Availability: https://www.kaggle.com/danrasband/classifying-images-of-the-asl-alphabet-using-keras
-# *******************************************************************
+# ********************************************************************************************************
 
 # ### Import Libraries
-
-# get_ipython().run_line_magic('matplotlib', 'notebook')
 
 # Imports for Deep Learning
 from keras.layers import Conv2D, Dense, Dropout, Flatten
@@ -44,20 +42,19 @@ import time
 import itertools
 import os
 
-# Image Preprocessing
+# Image Pre-processing
 from skimage.filters import sobel, scharr
 
 
 # ### Set Up Global Variables
 # The following variables will be used throughout.
-# The `MODEL_` variables are helpful for iterating over the notebook without re-fitting the model all the time,
-# but aren't useful in Kaggle.
+# The `MODEL_` variables are helpful for iterating over the notebook without re-fitting
+# the model all the time, but aren't useful in Kaggle.
 # Set global variables
-
 os.chdir("..") # Go back to the project (parent) directory of the Keras_Code directory
 TRAIN_DIR = os.getcwd() + '/asl-alphabet/asl_alphabet_train/asl_alphabet_train'
 TEST_DIR = os.getcwd() + '/asl-alphabet/asl_alphabet_test/asl_alphabet_test'
-CUSTOM_TEST_DIR = os.getcwd() + '../asl-alphabet-test'
+CUSTOM_TEST_DIR = os.getcwd() + '/asl-alphabet-test/asl-alphabet-test'
 CLASSES = [folder[len(TRAIN_DIR) + 1:] for folder in glob(TRAIN_DIR + '/*')]
 CLASSES.sort()
 
@@ -76,8 +73,7 @@ MODEL_SAVE_TO_DISK = getenv('KAGGLE_WORKING_DIR') != '/kaggle/working'
 print('Save model to disk? {}'.format('Yes' if MODEL_SAVE_TO_DISK else 'No'))
 
 
-# ### Sample Images
-#
+# Sample Images
 # The following shows one example of each image class:
 def plot_one_sample_of_each(base_path):
     cols = 5
@@ -101,18 +97,18 @@ def plot_one_sample_of_each(base_path):
 
 
 plot_one_sample_of_each(TRAIN_DIR)
-
-
 # And the following is a random sampling of the "real-world" test set:
-plt.show()
+#plt.show()
 
 
 plot_one_sample_of_each(CUSTOM_TEST_DIR)
+#plt.show()
 
 
 # ## Data Processing Set-Up
-#
-# In the next snippet, I make a generator for use by Keras. The `make_generator` function is versatile enough to be used for setting up a generator for training, validation, prediction, and testing.
+# In the next snippet, I make a generator for use by Keras.
+# The `make_generator` function is versatile enough to be used for
+# setting up a generator for training, validation, prediction, and testing.
 def preprocess_image(image):
     '''Function that will be implied on each input. The function
     will run after the image is resized and augmented.
@@ -250,15 +246,6 @@ columns=['Dimension 1', 'Dimension 2', 'Dimension 3', 'Dimension 4']
 pd.DataFrame(data=[x.shape for x in CNN_MODEL.weights], columns=columns)
 
 
-# In[27]:
-
-
-get_ipython().run_line_magic('pinfo2', 'print')
-
-
-# In[ ]:
-
-
 if HISTORY:
     print('Final Accuracy: {:.2f}%'.format(HISTORY.history['acc'][4] * 100))
     print('Validation set accuracy: {:.2f}%'.format(HISTORY.history['val_acc'][4] * 100))
@@ -269,9 +256,6 @@ if HISTORY:
 # The data provided in the ASL Alphabet data set is very much contrived. It's obvious that the images are made with one person's hand, in basically one environment. Because if this, it seemed like a good idea to validate that the models were not overfitting to images in this controlled environment. Below you can see a video compilation of all the "A" images.
 
 # In[ ]:
-
-
-get_ipython().run_cell_magic('HTML', '', '<div align="middle">\n    <video width="80%" controls>\n        <source src="https://s3-us-west-2.amazonaws.com/danrasband-w207/A.mp4" type="video/mp4">\n    </video>\n</div>')
 
 
 # Below is an attempt to evaluate our model against the ASL Alphabet Test data set, which is more like a real-world data set.
@@ -318,7 +302,7 @@ def plot_confusion_matrix(cm, classes,
 
 
 def plot_confusion_matrix_with_default_options(y_pred, y_true, classes):
-    '''Plot a confusion matrix heatmap with a default size and default options.'''
+    # Plot a confusion matrix heatmap with a default size and default options.
     cm = confusion_matrix(y_true, y_pred)
     with sns.axes_style('ticks'):
         plt.figure(figsize=(16, 16))
