@@ -97,12 +97,9 @@ def plot_one_sample_of_each(base_path):
 
 
 plot_one_sample_of_each(TRAIN_DIR)
+# plt.show()
 # And the following is a random sampling of the "real-world" test set:
-#plt.show()
-
-
 plot_one_sample_of_each(CUSTOM_TEST_DIR)
-#plt.show()
 
 
 # ## Data Processing Set-Up
@@ -164,6 +161,7 @@ def load_model_from_disk():
 
     return None
 
+
 CNN_MODEL = load_model_from_disk()
 REPROCESS_MODEL = (CNN_MODEL is None)
 
@@ -173,7 +171,7 @@ print('Need to reprocess? {}'.format(REPROCESS_MODEL))
 def build_model(save=False):
     print('Building model afresh...')
 
-# model = Sequential()
+    model = Sequential()
 
     model.add(Conv2D(64, kernel_size=4, strides=1, activation='relu', input_shape=TARGET_DIMS))
 #     model.add(Conv2D(64, kernel_size=4, strides=2, activation='relu'))
@@ -202,7 +200,7 @@ print_summary(CNN_MODEL)
 # In[34]:
 
 
-CNN_MODEL.save_weights(MODEL_WEIGHTS_PATH)
+# CNN_MODEL.save_weights(MODEL_WEIGHTS_PATH)
 
 
 # ## Model Fitting
