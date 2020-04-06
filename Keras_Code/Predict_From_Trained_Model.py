@@ -1,7 +1,8 @@
-# HOW TO GET A PREDICTION FROM A TRAINED MODEL
+# Getting a Prediction from trained model:
 # (Python 3)
 
 ### STEP 0 - IMPORTS
+import os
 from keras.models import load_model
 from keras.preprocessing import image
 import cv2
@@ -44,15 +45,13 @@ class_indices = {'A': 0,
 # used to get the letter class from the argmax of a prediction vector.
 ind_to_class = {v: k for k, v in class_indices.items()}
 
-### STEP 1 - LOAD THE MODEL AND ITS WEIGHTS
+# STEP 1 - LOAD THE MODEL AND ITS WEIGHTS
 # path to model definition (replace with your own PATH)
-MODEL_DIR = './asl-alphabet'
+MODEL_DIR = os.getcwd() + '/asl-alphabet'
 model_def_path = MODEL_DIR + '/slim-cnn-model.h5'
 
 # load the model
 model = load_model(model_def_path)
-# check model summary
-print(model.summary())
 
 # path to model weights
 model_weights_path = MODEL_DIR + '/slim-cnn-model.weights.h5'
@@ -60,18 +59,13 @@ model_weights_path = MODEL_DIR + '/slim-cnn-model.weights.h5'
 model.load_weights(model_weights_path)
 
 
-# STEP 1.5 - load an image from disk
-# (in your code, you should get the image from the camera without wasting time saving it)
-# (and not use any of this code)
-# path to an image
-IMG_DIR = './asl-alphabet/asl_alphabet_train/asl_alphabet_train'
-img_path = IMG_DIR + '/R/R310.jpg'
+# STEP 1.5 - LOAD IMAGE: (Take this from webcam)
 # load image to python object
 img = image.load_img(img_path, target_size=(64,64))
 img = image.img_to_array(img, dtype='int')
 # print(img)
-plt.imshow(img)
-plt.show()
+# plt.imshow(img)
+# plt.show()
 
 ### STEP 2 - PREPROCESS IMAGE
 # at this stage, img should be a numpy array of shape (64,64,3)
@@ -81,8 +75,8 @@ plt.show()
 
 # normalize to mean 0 variance 1
 img = (img-np.mean(img))/np.std(img)
-plt.imshow(img)
-plt.show()
+# plt.imshow(img)
+#plt.show()
 
 def preprocess_image(image):
     '''Function that will be implied on each input. The function
@@ -94,16 +88,15 @@ def preprocess_image(image):
     return sobely
 
 img = preprocess_image(img)
-plt.imshow(img)
-plt.show()
-
+# plt.imshow(img)
+# plt.show()
 img = (img-np.mean(img))/np.std(img)
 
 # check the shape of img
 # it should be (64, 64, 3) (64*64 pixels with 3 colors)
-print('img shape: {}'.format(np.shape(img)))
-plt.imshow(img)
-plt.show()
+# print('img shape: {}'.format(np.shape(img)))
+# plt.imshow(img)
+# plt.show()
 
 # expand to have a batchsize of 1
 img = np.reshape(img, (1,64,64,3))
