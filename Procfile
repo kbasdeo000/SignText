@@ -1,3 +1,3 @@
-web: gunicorn app:signtext
+web: gunicorn signtext:app
 
 
