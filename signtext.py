@@ -3,7 +3,7 @@
 
 import os
 from flask import Flask, request, jsonify
-from Keras_Code.Predict_From_Trained_Model import *
+from Predict_From_Trained_Model import *
 
 # initialize a flask object
 
@@ -24,12 +24,10 @@ def get_image():
 
     # Get image path:
     image_path = os.getcwd()
-    
+
     prediction = get_prediction(image_path)
     return jsonify(prediction)
-
 
 # app.run()
 if __name__ == '__main__':
     app.run()
-
