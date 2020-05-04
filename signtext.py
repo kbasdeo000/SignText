@@ -1,6 +1,7 @@
 # Flask API
 # Back-end code
 
+import os
 from flask import Flask, request, jsonify
 from Keras_Code.Predict_From_Trained_Model import *
 
@@ -20,11 +21,15 @@ def home():
 @app.route('/translate', methods=['POST'])
 def get_image():
     image = request.files['file']
-    # the image should be saved and have a path ?
-    prediction = get_prediction(image)
+
+    # Get image path:
+    image_path = os.getcwd()
+    
+    prediction = get_prediction(image_path)
     return jsonify(prediction)
 
 
 # app.run()
 if __name__ == '__main__':
     app.run()
+

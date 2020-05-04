@@ -9,3 +9,5 @@ matplotlib==3.2.0
 tensorflow==2.1.0
 tensorflow-estimator==2.1.0
 opencv-python==4.2.0.32
+launchpadlib==1.10.6
+
