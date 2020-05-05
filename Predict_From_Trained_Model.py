@@ -58,7 +58,7 @@ def get_prediction(img_path):
 
     # STEP 1 - LOAD THE MODEL AND ITS WEIGHTS
     # path to model definition (replace with your own PATH)
-    MODEL_DIR = os.getcwd() # + '/asl-alphabet'
+    MODEL_DIR = os.getcwd() + '/asl-alphabet'
     model_def_path = MODEL_DIR + '/slim-cnn-model.h5'
 
     # load the model
