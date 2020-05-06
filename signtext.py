@@ -7,6 +7,7 @@ from flask import Flask, request, jsonify, redirect
 from Predict_From_Trained_Model import *
 from flask_cors import CORS, cross_origin # Allows Cross Origin Resource Sharing
 from PIL import Image
+import base64
 
 # initialize a flask object
 app = Flask(__name__)
@@ -29,39 +30,22 @@ def home():
 # Translate page route:
 @app.route('/translate', methods=['POST'])
 @cross_origin(origin = '*')
-def get_image():
+def recieve_image():
 
     prediction = None
 
-    #if request.method == 'POST':
-    #image = request.get_data()
-    #pil_image = open(image, 'wb')
-    file = request.form['image']
-    print(type(file))
-    print(file)
-    #img = cv2.imread(file)
+    image_data = request.form['image']
+    # print(type(image_data)) --> <str>
+    # Form: <str>: 'data:image/png;base64, base64 encoding itself'
+    # img = base64.b64decode(image_data) ----> doesn't work
 
-    # Get image path:
-    curr_path = os.getcwd()
-    print(curr_path)
-    image_path = curr_path + 'image.jpg'
-    #prediction = get_prediction(image_path)
+    # Methodology:
+    # Decode image
+    # Save & get path
+    # Pass the img path to Predict_From_Trained_Model.get_prediction
+    # Return prediction
 
-    return jsonify("yes")
-
-    '''
-    if image:
-        pil_image = Image.open(image)
-        return jsonify("yes")
-    '''    '''
-        image.save(os.path.join(uploads_dir, secure_filename(image.filename)))
-        # Get image path:
-        curr_path = os.getcwd()
-        image_path = curr_path + secure_filename
-
-        prediction = get_prediction(image_path)
-        return jsonify(prediction)
-        '''
+    return jsonify(prediction)
 
 # app.run()
 if __name__ == '__main__':
