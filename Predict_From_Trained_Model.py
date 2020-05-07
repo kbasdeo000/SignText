@@ -2,8 +2,11 @@
 # (Python 3)
 
 ### STEP 0 - IMPORTS
+# *** Using kera.models import load_model yields an error:
+# AttributeError: '_thread._local' object has no attribute 'value'
+# Use tensorflow import instead:
 import os
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from keras.preprocessing import image
 import cv2
 from matplotlib import pyplot as plt
@@ -74,7 +77,6 @@ def get_prediction(img_path):
     # load image to python object
     img = image.load_img(img_path, target_size=(64,64))
     img = image.img_to_array(img, dtype='int')
-    # print(img)
     # plt.imshow(img)
     # plt.show()
 
@@ -87,8 +89,7 @@ def get_prediction(img_path):
     # normalize to mean 0 variance 1
     img = (img-np.mean(img))/np.std(img)
     # plt.imshow(img)
-    #plt.show()
-
+    # plt.show()
     img = preprocess_image(img)
     # plt.imshow(img)
     # plt.show()

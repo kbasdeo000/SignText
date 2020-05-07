@@ -32,19 +32,22 @@ def home():
 @cross_origin(origin = '*')
 def recieve_image():
 
+    data_string = request.form['image']
+    # data_string form: <str>: 'data:image/png;base64,base64 encoding itself'
+    # Get substring, disregarding the first 21 positions
+    img_string = data_string[22:]
+    img = base64.b64decode(img_string)
+
+    # Save the image & its path name
+    img_file_name = "image.png"
+    with open(img_file_name, 'wb') as f:
+        f.write(img)
+    cur_path = os.getcwd()
+    img_path = cur_path + "/image.png"
+
+    # Pass the path to the predictor function & return a prediction
     prediction = None
-
-    image_data = request.form['image']
-    # print(type(image_data)) --> <str>
-    # Form: <str>: 'data:image/png;base64, base64 encoding itself'
-    # img = base64.b64decode(image_data) ----> doesn't work
-
-    # Methodology:
-    # Decode image
-    # Save & get path
-    # Pass the img path to Predict_From_Trained_Model.get_prediction
-    # Return prediction
-
+    prediction = get_prediction(img_path)
     return jsonify(prediction)
 
 # app.run()
