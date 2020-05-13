@@ -21,15 +21,9 @@ uploads_dir = os.path.join(app.instance_path, 'uploads')
 if not os.path.exists(uploads_dir):
     os.makedirs(uploads_dir)
 
-# Home page route:
-@app.route('/')
-def home():
-    return "home"   # dummy example
-
-
 # Translate page route:
 @app.route('/translate', methods=['POST'])
-@cross_origin(origin = '*')
+@cross_origin(origin = 'https://signtext.ue.r.appspot.com')
 def recieve_image():
 
     data_string = request.form['image']
@@ -46,7 +40,6 @@ def recieve_image():
     img_path = cur_path + "/image.png"
 
     # Pass the path to the predictor function & return a prediction
-    prediction = None
     prediction = get_prediction(img_path)
     return jsonify(prediction)
 
