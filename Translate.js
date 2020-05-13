@@ -101,17 +101,17 @@ class Translate extends React.Component {
                    Your translation will appear here.
         </textarea>
         <div>
-          <div className='screenshots'>
-            {this.state.screenshot ? <img src={this.state.screenshot} height={265} width={355}/> : null}
-          </div>
-        </div>
-      </div>
-      <div>
+        <div>
         <h3>Timer: {ms(this.state.time)}</h3>
         {start}
         {resume}
         {stop}
         {reset}
+      </div>
+          <div className='screenshots'>
+            {this.state.screenshot ? <img src={this.state.screenshot} height={265} width={355}/> : null}
+          </div>
+        </div>
       </div>
       </center>
       </FadeIn>
