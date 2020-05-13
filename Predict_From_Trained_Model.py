@@ -88,11 +88,11 @@ def get_prediction(img_path):
 
     # normalize to mean 0 variance 1
     img = (img-np.mean(img))/np.std(img)
-    # plt.imshow(img)
-    # plt.show()
+    #plt.imshow(img)
+    #plt.show()
     img = preprocess_image(img)
-    # plt.imshow(img)
-    # plt.show()
+    #plt.imshow(img)
+    #plt.show()
     img = (img-np.mean(img))/np.std(img)
 
     # check the shape of img
@@ -113,4 +113,10 @@ def get_prediction(img_path):
     print('file name: {}'.format(img_path.split('/')[-1]))
     print('prediction clsas: {}'.format(ind_to_class[np.argmax(pred_vector)]))
 
-    return pred_class
+
+    if pred_class == 'nothing':
+        return ""
+    elif pred_class == 'space':
+        return " "
+    else:
+        return pred_class
