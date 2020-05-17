@@ -9,47 +9,60 @@ class Translate extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      time: 0,
+      time: 3000,
       isOn: false,
-      start: 0,
+      start: 3000,
       screenshot: null,
       getdata: "",
       tab: 0,
       concat: ""
     }
     this.startTimer = this.startTimer.bind(this)
-    this.stopTimer = this.stopTimer.bind(this)
     this.resetTimer = this.resetTimer.bind(this)
+    this.stopTimer = this.stopTimer.bind(this)
   }
   
   startTimer() {
     this.setState({
       isOn: true,
       time: this.state.time,
-      start: Date.now() - this.state.time,
+      start: this.state.start,
       screenshot: this.state.screenshot,
       getdata: this.state.getdata,
       concat: this.state.concat
     })
     this.timer = setInterval(() => this.setState({
-      time: Date.now() - this.state.start}), 1000);
+      time: this.state.time - 1000}), 1000);
     this.screenshot = setInterval(() => this.setState({
-        screenshot: this.webcam.getScreenshot()} ), 3000);
+        screenshot: this.webcam.getScreenshot(), time: 3000} ), 3000);
     this.getdata = setInterval(() => this.setState({
         getdata: this.getdatafunc(), concat: (this.state.concat + this.state.getdata)} ), 3000);
   }
 
   stopTimer() {
-    this.setState({isOn: false})
-    this.setState({screenshot: null})
-    this.setState({getdata: ""})
-    clearInterval(this.timer)
-    clearInterval(this.screenshot)
-    clearInterval(this.getdata)
+    this.setState({ 
+      isOn: false,
+      time: 3000,
+      start: this.state.start,
+      screenshot: this.state.screenshot,
+      getdata: this.state.getdata,
+      concat: this.state.concat})
+      clearInterval(this.timer)
+      clearInterval(this.screenshot)
+      clearInterval(this.getdata)
   }
 
   resetTimer() {
-    this.setState({time: 0, isOn: false, screenshot: this.state.screenshot, getdata: this.state.getdata, concat: ""})
+    this.setState({ 
+      isOn: false,
+      time: 3000,
+      start: this.state.start,
+      screenshot: null,
+      getdata: "",
+      concat: ""})
+      clearInterval(this.timer)
+      clearInterval(this.screenshot)
+      clearInterval(this.getdata)
   }
 
   getdatafunc() {
@@ -74,19 +87,16 @@ class Translate extends React.Component {
 
   
   render() {
-    let start = (this.state.time === 0) ?
+    let start = (!this.state.isOn) ?
     <button onClick={this.startTimer} type="button" class="btn btn-outline-warning btn-lg">Start</button>:
-      null
-    let stop = (this.state.time === 0 || !this.state.isOn) ?
+      null 
+    let stop = (!this.state.isOn) ?
       null :
       <button onClick={this.stopTimer} type="button" class="btn btn-outline-warning btn-lg">Stop</button>
-    let resume = (this.state.time === 0 || this.state.isOn) ?
-      null :
-      <button onClick={this.startTimer} type="button" class="btn btn-outline-warning btn-lg">Resume</button>
-    let reset = (this.state.time === 0 || this.state.isOn) ?
+    let reset = (this.state.isOn) ?
       null :
       <button onClick={this.resetTimer} type="button" class="btn btn-outline-warning btn-lg">Reset</button>
-    
+
     return(
       <FadeIn>
       <center>
@@ -104,7 +114,6 @@ class Translate extends React.Component {
         <div>
         <h3>Timer: {ms(this.state.time)}</h3>
         {start}
-        {resume}
         {stop}
         {reset}
       </div>
@@ -121,3 +130,4 @@ class Translate extends React.Component {
 
 
 export { Translate};
+
