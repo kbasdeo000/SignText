@@ -23,7 +23,7 @@ if not os.path.exists(uploads_dir):
 
 # Translate page route:
 @app.route('/translate', methods=['POST'])
-@cross_origin(origin = 'https://signtext.ue.r.appspot.com')
+@cross_origin(origin = '*')
 def recieve_image():
 
     data_string = request.form['image']
