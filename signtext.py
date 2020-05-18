@@ -9,21 +9,16 @@ from flask_cors import CORS, cross_origin # Allows Cross Origin Resource Sharing
 from PIL import Image
 import base64
 
-# initialize a flask object
+# Initialize a flask object
 app = Flask(__name__)
 CORS(app, support_credentials=True)
-#app.config["DEBUG"] = True
 app.config['CORS_HEADERS'] = 'Content-Type'
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-# Create a directory in a known location to save image files to:
-uploads_dir = os.path.join(app.instance_path, 'uploads')
-if not os.path.exists(uploads_dir):
-    os.makedirs(uploads_dir)
 
 # Translate page route:
 @app.route('/translate', methods=['POST'])
-@cross_origin(origin = '*')
+# ADD ORIGIN OF THE FRONT END
+# For deployment origin: http://signtext.ue.r.appspot.com/translate
+@cross_origin(origin = 'http://localhost:3000/translate')
 def recieve_image():
 
     data_string = request.form['image']
