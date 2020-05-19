@@ -108,7 +108,7 @@ class Translate extends React.Component {
           ref={node => this.webcam = node}
         />
         <textarea id="TextBox" rows="15" cols="55" value={this.state.concat}>
-                   {this.state.getdata}
+                   Your translation will appear here.
         </textarea>
         <div>
         <div>

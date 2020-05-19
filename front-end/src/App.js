@@ -6,15 +6,14 @@ import { Translate } from './Translate';
 import { NoMatch } from './NoMatch';
 import { Layout } from './components/Layout'; 
 import { NavigationBar } from './components/NavigationBar'; 
-import { Jumbotron } from './components/Jumbotron';
-
+import FadeIn from 'react-fade-in';
 
 class App extends Component {
   render () {
     return (
       <React.Fragment> 
         <NavigationBar />
-        <Jumbotron />
+        <FadeIn />
         <Layout>
           <Router>
             <Switch>
