@@ -57,7 +57,7 @@ def get_prediction(img_path):
 
     # STEP 1 - LOAD THE MODEL AND ITS WEIGHTS
     # path to model definition (replace with your own PATH)
-    model_archi_path = os.getcwd() + '/asl-alphabet/slim-cnn-model_1589504755.7570796.archi.h5'
+    model_archi_path = os.getcwd() + '/slim-cnn-model_1589504755.7570796.archi.h5'
 
     # load the model architecture:
     model = load_model(model_archi_path)
